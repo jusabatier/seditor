@@ -189,10 +189,14 @@ public class ServiceWorkspaces implements IServiceWorkspaces {
 		}
 		
 		for( WorkspacePermission wsp : ws.getPermissions() ) {
-			if( wsp.getRole().equals("ALL") || 
-					(wsp.getRole().equals("*") && roleList != null && !roleList.isEmpty()) || 
-					roleList.contains("ROLE_"+wsp.getRole()) ) {
-				accessLevel = Integer.max(accessLevel, wsp.getAccess());
+			if( wsp.getRole().equals("ALL") || (wsp.getRole().equals("*") && roleList != null && !roleList.isEmpty()) ) {
+				accessLevel = Math.max(accessLevel, wsp.getAccess());
+			} else {
+				for( String role : wsp.getRole().split(",") ) {
+					if( roleList.contains("ROLE_"+role) ) {
+						accessLevel = Math.max(accessLevel, wsp.getAccess());
+					}
+				}
 			}
 		}
 		
