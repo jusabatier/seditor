@@ -1,9 +1,10 @@
 define('lib/seditor/controls/SelectFeatureControl',
 	[
 		'openlayers',
+		'bootbox',
 		'lib/seditor/controls/ActiveControl'
 	],
-	function(ol) {
+	function(ol,bootbox) {
 		seditor.SelectFeatureControl = function(opt_options) {
 			var options = opt_options || {};
 			
