@@ -8,6 +8,8 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.georchestra.seditor.bean.Workspace;
 import org.georchestra.seditor.bean.WorkspaceAttribute;
 import org.georchestra.seditor.bean.WorkspaceLayer;
@@ -19,6 +21,8 @@ import org.json.JSONObject;
 
 @Service
 public class ServiceWorkspaces implements IServiceWorkspaces {
+	
+	final static Logger logger = Logger.getLogger(ServiceWorkspaces.class);
 	
 	@Autowired
 	private IWorkspacesDAO dao;
@@ -121,7 +125,7 @@ public class ServiceWorkspaces implements IServiceWorkspaces {
 		if( roles.contains("*") ) rolesString = "*";
 		if( roles.contains("ALL") ) rolesString = "ALL";
 		
-		if( rolesString == null ) rolesString = String.join(",",roles);
+		if( rolesString == null ) rolesString = PermissionsHandler.getRolesStringFromSet(roles);
 		
 		WorkspacePermission wsp = new WorkspacePermission(null,getWorkspaceById(wsId),rolesString,access);
 		return dao.createWorkspacePermission(wsp);
@@ -146,7 +150,7 @@ public class ServiceWorkspaces implements IServiceWorkspaces {
 		if( roles.contains("*") ) rolesString = "*";
 		if( roles.contains("ALL") ) rolesString = "ALL";
 		
-		if( rolesString == null ) rolesString = String.join(",",roles);
+		if( rolesString == null ) rolesString = PermissionsHandler.getRolesStringFromSet(roles);
 		
 		WorkspacePermission wsp = new WorkspacePermission(id,getWorkspaceById(workspace),rolesString,access);
 		return dao.updateWorkspacePermission(wsp);
