@@ -1,6 +1,7 @@
 package org.georchestra.seditor.permissions;
 
 import java.util.Arrays;
+import java.util.Set;
 
 import org.georchestra.seditor.configuration.SEditorPlaceHolder;
 
@@ -11,12 +12,24 @@ public class PermissionsHandler {
 	public static void setRoles(String roles) {
 		if( roles != null && !roles.trim().isEmpty() ) {
 			getInstance().roleList = roles.split(SEditorPlaceHolder.getProperty("roleSeparator"));
+		} else {
+			getInstance().roleList = new String[0];
 		}
 	}
 	
 	public static PermissionsHandler getInstance() {
 		if( instance == null ) instance = new PermissionsHandler();
 		return instance;
+	}
+	
+	public static String getRolesStringFromSet(Set<String> roles) {
+		StringBuilder sb = new StringBuilder();
+		String previousSeparator = "";
+		for( String role : roles ) {
+			sb.append(previousSeparator + role);
+			previousSeparator = ",";
+		}
+		return sb.toString();
 	}
 	
 	public String[] roleList = null;
