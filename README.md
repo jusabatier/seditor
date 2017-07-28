@@ -5,6 +5,7 @@ Webapp to put behind Georchestra SP, allow to manage and edit layer's features a
 
 * Postgres 9.4 / PostGIS 2.1
 * Java 1.7 or higher
+* Tomcat 7 or higher
 
 ## Description
 
