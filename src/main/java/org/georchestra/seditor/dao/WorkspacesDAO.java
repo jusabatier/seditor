@@ -38,31 +38,24 @@ public class WorkspacesDAO implements IWorkspacesDAO {
 	protected DataSource dataSource;
 	
 	public List<Workspace> getWorkspacesList() {
-		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-		CriteriaQuery<Workspace> criteriaQuery = criteriaBuilder.createQuery(Workspace.class);
-		Root<Workspace> workspaceRoot = criteriaQuery.from(Workspace.class);
-		criteriaQuery.select(workspaceRoot);
-		
+		StringBuilder queryBuilder = new StringBuilder();
+		queryBuilder.append("SELECT w FROM Workspace w");
 		if( !PermissionsHandler.getInstance().isAdmin() ) {
-			Root<WorkspacePermission> workspacePermissionRoot = criteriaQuery.from(WorkspacePermission.class);
-			Expression<String> roleAttr = workspacePermissionRoot.get("role");
-			
-			if( PermissionsHandler.getInstance().roleList == null ) {
-				criteriaQuery.where(criteriaBuilder.equal(roleAttr, "ALL"));
+			queryBuilder.append(", IN(w.permissions) p WHERE ");
+			if( PermissionsHandler.getInstance().roleList == null || PermissionsHandler.getInstance().roleList.length == 0 ) {
+				queryBuilder.append(" p.role = 'ALL'");
 			} else {
-				List<String> roleList = new ArrayList<String>();
+				queryBuilder.append(" p.role = '*'");
+				
 				for (String role : PermissionsHandler.getInstance().roleList) {
-					roleList.add(role.substring(5));
+					queryBuilder.append(" OR p.role LIKE '%"+role.substring(5)+"%'");
 				}
-			
-				Predicate or = criteriaBuilder.or(roleAttr.in(roleList),criteriaBuilder.equal(roleAttr, ""));
-				criteriaQuery.where(or);
 			}
 		}
-	
-		TypedQuery<Workspace> lTypedQuery = entityManager.createQuery(criteriaQuery);
 		
-		return lTypedQuery.getResultList();
+		
+		TypedQuery<Workspace> q = entityManager.createQuery(queryBuilder.toString(), Workspace.class);
+		return q.getResultList();
 	}
 
 	public Workspace createWorkspace(Workspace pWorkspace) {
