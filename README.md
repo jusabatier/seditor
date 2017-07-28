@@ -6,6 +6,30 @@ Webapp to put behind Georchestra SP, allow to manage and edit layer's features a
 * Postgres 9.4 / PostGIS 2.1
 * Java 1.7 or higher
 
+## Description
+
+This application is composed of two sides : 
+
+* An editor viewer, accessible at `/` : 
+   It load a workspace configuration and allow to add / modify and delete features and their attributes related to your privileges.
+   
+   Actually available : 
+   * create (point, line, polygon, circle)(with attributes)
+   * modify (with attributes)
+   * translate
+   * select
+   * delete
+   * snapping
+   * layerlist
+   * navigation (with getfeatureinfo)
+   
+* An administration panel, accessible at `/workspaces` :
+   It allow administrators to manage workspaces : 
+   * Define geometry type, workspace key, database workspace table
+   * Manage features required attributes (types, names and values)
+   * Manage layers to include (WMS for viewing and WFS for snapping)
+   * Manage privilèges (related to LDAP roles)
+
 ## Installation
 
 ### Database
@@ -60,11 +84,13 @@ You'll find the war in the target directory.
 
 sEditor have to be placed behind georchestra's security proxy, as the privilèges management is based on georchestra's roles and username (sec-roles & sec-username request headers).
 
+But you can simulate those requests headers with a Firefox addon like "Modify Headers".
+
 It also use the same datadir logic for properties files.
 So you'll have to put a properties file under the seditor directory of your georchestra datadir.
+
 Here is the file you can copy, or modify before build : https://github.com/jusabatier/seditor/blob/master/src/main/resources/seditor.properties
 
-But you can simulate those requests headers with a Firefox addon like "Modify Headers".
 
 * For deploy the app, just put the WAR in the tomcat webapp folder, wait for it to startup.
 
@@ -73,6 +99,7 @@ Once done, you can access the admin on :
 `http://<tomcat_ip>:<tomcat_port>/seditor/workspaces`
 
 If you have admin role.
+At this step, you can access directly to the application, but you have to set request headers via a plugin.
 
 * For deploy it behind Georchestra SP, you have to : 
 
