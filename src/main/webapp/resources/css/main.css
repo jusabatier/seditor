@@ -1,0 +1,170 @@
+body {
+	margin: 0;
+}
+
+#seditor-toolbar {
+	position: absolute;
+	top: .5em;
+	right: .5em; 
+}
+
+.ol-rotate {
+	top: 2.5em;
+}
+
+#seditor-toolbar .seditor-button {
+	position: relative;
+}
+
+#seditor-toolbar .active {
+	background-color: rgba(255,0,0,.5);
+}
+
+#seditor-toolbar .seditor-create-point {
+	background-image: url("../images/drawPoint.png");
+	background-position: center center;
+    background-repeat: no-repeat;
+}
+
+#seditor-toolbar .seditor-create-linestring {
+    background-image: url("../images/drawLine.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+#seditor-toolbar .seditor-create-polygon {
+    background-image: url("../images/drawPolygon.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+#seditor-toolbar .seditor-modify-feature {
+    background-image: url("../images/modifyFeature.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+#seditor-toolbar .seditor-select-feature {
+    background-image: url("../images/selectFeature.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+#seditor-toolbar .seditor-delete-feature {
+    background-image: url("../images/deleteFeature.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+#seditor-toolbar .seditor-drag-feature {
+    background-image: url("../images/dragFeature.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+#seditor-toolbar .seditor-navigation {
+    background-image: url("../images/navigation.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+#seditor-toolbar .seditor-snapping-wrapper .seditor-snapping {
+    background-image: url("../images/snappingInactive.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    padding: 0;
+}
+
+#seditor-toolbar .seditor-snapping-wrapper.enabled .seditor-snapping {
+    background-image: url("../images/snappingActive.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    padding: 0;
+}
+
+#seditor-toolbar .seditor-save-features {
+    background-image: url("../images/saveFeatures.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    padding: 0;
+}
+
+#seditor-toolbar .disabled {
+	filter: opacity(40%);
+	cursor: default;
+}
+
+.seditor-layers-list-wrapper {
+	position: absolute;
+	top: 4.5em;
+	left: .5em;
+}
+
+.seditor-layers-list-wrapper .seditor-layers-list {
+	background-image: url("../images/layersList.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.seditor-layers-list-wrapper .seditor-layers-div {
+	position: absolute;
+	top: 2px;
+	left: 2em;
+	background-color: rgba(0,60,136,.8);
+	color: #fff;
+	border: none;
+	border-radius: 2px;
+	padding: 0.3em;
+	display: none;
+}
+
+.seditor-layers-list-wrapper .seditor-layers-div.visible {
+	display:block;
+}
+
+.seditor-layers-list-wrapper .seditor-layers-div p, .seditor-snapping-wrapper .seditor-snapping-div p {
+	margin: 0 0 0.1em;
+	vertical-align: middle;
+	white-space: nowrap;
+}
+
+.seditor-layers-list-wrapper .seditor-layers-div p input[type="checkbox"], .seditor-snapping-wrapper .seditor-snapping-div p input[type="checkbox"] {
+	margin-right: 0.3em;
+}
+
+.seditor-snapping-wrapper {
+	position: relative;
+	padding: 0;
+}
+
+.seditor-snapping-wrapper .seditor-snapping-div {
+	position: absolute;
+	top: 2px;
+	right: 2em;
+	background-color: rgba(0,60,136,.8);
+	color: #fff;
+	border: none;
+	border-radius: 2px;
+	padding: 0.3em;
+	display: none;
+}
+
+.seditor-snapping-wrapper .seditor-snapping-div.visible {
+	display:block;
+}
+
+.popover{
+    max-width: 800px;
+    font-size: 0.8em;
+}
+
+.popover .close {
+    position: absolute;
+	right: 0.2em;
+	top: 0;
+}
+
+.popover-content {
+   max-height: 200px;
+   overflow-y: scroll;
+}
