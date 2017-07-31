@@ -31,6 +31,20 @@ This application is composed of two sides :
    * Manage layers to include (WMS for viewing and WFS for snapping)
    * Manage privilèges (related to LDAP roles)
 
+## To do
+
+* Front-end : 
+   * Implement internationalization (actually hardcoded in french)
+   * Add descriptions when hover buttons
+   * Add create regular polygons
+   
+* Backend : 
+   * Manage workspaces buttons related to user role (hide New ws, Edit Delete if not allowed)
+   * Implement a download layer function when user have access to workspace
+   * Add more input types (select, tinyMCE, file, ...)
+
+Create an issue if you have some suggestions.
+
 ## Installation
 
 ### Database
@@ -99,7 +113,8 @@ Once done, you can access the admin on :
 
 `http://<tomcat_ip>:<tomcat_port>/seditor/workspaces`
 
-If you have admin role.
+If you have an admin role, like set in the seditor.properties file.
+
 At this step, you can access directly to the application, but you have to set request headers via a plugin.
 
 * For deploy it behind Georchestra SP, you have to : 
