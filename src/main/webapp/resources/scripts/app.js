@@ -76,7 +76,7 @@ requirejs(
 					app.configuration.featureTypes = ['LineString'];
 				}
 				if( app.configuration.featureType == 'POLYGON' ) {
-					app.configuration.featureTypes = ['Polygon','Circle'];
+					app.configuration.featureTypes = ['Polygon'/*,'Circle'*/];
 				}
 		
 				app.init();		
