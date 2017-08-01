@@ -189,7 +189,7 @@ define('seditor',
 						var attributes = {}, error = false;
 			   			seditor.attributes.forEach(function(item) {
 							attributes[item.name] = $('#'+item.name+'-input').val();
-							if( !attributes[item.name] && item.required ) { 
+							if( !attributes[item.name] && item.required == "true" ) { 
 								alert('Veuillez renseigner le champ "'+item.name+'".');
 								error=true;
 							}
