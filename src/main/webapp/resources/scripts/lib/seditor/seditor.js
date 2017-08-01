@@ -188,7 +188,16 @@ define('seditor',
 					if(result) {
 						var attributes = {}, error = false;
 			   			seditor.attributes.forEach(function(item) {
-							attributes[item.name] = $('#'+item.name+'-input').val();
+			   				if( item.type == "checkbox" || item.type == "radio" ) {
+			   					var value = "";
+			   					$('input[name="'+item.name+'"]:checked').each(function(){ value += this.value+',' });
+			   					if(value.length > 0)
+			   						attributes[item.name] = value.substring(0,value.length-1);
+			   					else attributes[item.name] = "";
+			   				} else {
+			   					attributes[item.name] = $('#'+item.name+'-input').val();
+			   				}
+			   				
 							if( !attributes[item.name] && item.required == "true" ) { 
 								alert('Veuillez renseigner le champ "'+item.name+'".');
 								error=true;
@@ -212,7 +221,17 @@ define('seditor',
 		    
 		    if( event.type == 'select' && event.selected.length > 0 ) {
 		    	seditor.attributes.forEach(function(item) {
-    				$('#'+item.name+'-input').val(feature.get(item.name));
+		    		if( item.type == "checkbox" || item.type == "radio" ) {
+		    			var values = feature.get(item.name);
+		    			if( values ) {
+		    				values= values.split(",");
+			    			$('input[name="'+item.name+'"]').each(function(){
+			    				if( $.inArray(this.value,values) > -1 ) $(this).prop('checked', true); 
+			    			});
+		    			}
+		    		}else {
+		    			$('#'+item.name+'-input').val(feature.get(item.name));
+		    		}
     			});
 		    }
 		};
