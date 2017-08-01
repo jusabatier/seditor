@@ -38,6 +38,12 @@ body {
     background-repeat: no-repeat;
 }
 
+#seditor-toolbar .seditor-create-circle {
+    background-image: url("../images/drawCircle.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
 #seditor-toolbar .seditor-modify-feature {
     background-image: url("../images/modifyFeature.png");
     background-position: center center;
