@@ -141,7 +141,7 @@ define('seditor',
 						html += "<textarea class='form-control' id='"+item.name+"-input' name='"+item.name+"'></textarea>";
 						break;
 			
-					case 'checkboxes':
+					case 'checkbox':
 						item.datasource.forEach(function(subitem, subindex) {
 							html += "<div class='checkbox'>";
 							html += "<label for='"+item.name+"-input-"+subindex+"'>";
@@ -225,8 +225,8 @@ define('seditor',
 						var lsFeatures = formatter.readFeatures(reponse);
 						lsFeatures.forEach(function(item,index) {lsFeatures[index].set('state','nochange');});
 						seditor.features.extend(lsFeatures);
-						bootbox.hideAll();
 					}
+					bootbox.hideAll();
 				} else if( reponse.statut == "restricted" ) {
 					bootbox.hideAll();
 					bootbox.alert("Vous n'avez pas les permissions necessaires pour consulter cet espace de travail.", function() {
