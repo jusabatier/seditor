@@ -33,7 +33,7 @@
 	"attributes": [
 		<c:forEach items="${attributes}" var="attribute" varStatus="status">
 		{
-			<c:if test="${not empty attribute.values}">"datasource": [<c:out value="${attribute.values}"/>],</c:if>
+			<c:if test="${not empty attribute.values}">"datasource": ${attribute.values},</c:if>
 			"name": "<c:out value="${attribute.name}"/>",
 			"type": "<c:out value="${attribute.type}"/>",
 			"label": "<c:out value="${attribute.label}"/>",
