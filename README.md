@@ -15,7 +15,7 @@ This application is composed of two sides :
    It load a workspace configuration and allow to add / modify and delete features and their attributes related to your privileges.
    
    Actually available : 
-   * create (point, line, polygon, circle)(with attributes)
+   * create (point, line, polygon)(with attributes)
    * modify (with attributes)
    * translate
    * select
