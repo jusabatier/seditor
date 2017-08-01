@@ -43,6 +43,10 @@ define('lib/seditor/controls/NavigationControl',
 					});
 					
 					$.when.apply(undefined,lstAjax).done(function() {
+						if( lstAjax.length == 1 ) {
+							arguments = [arguments];
+						}
+						
 						var editedFeatures = [], featureCount = 0;
 						options.map.forEachFeatureAtPixel(event.pixel, function (feature) {
 							editedFeatures.push(feature);
