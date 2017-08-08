@@ -165,6 +165,8 @@ $(function() {
 									<form:option value="textarea" >Textarea</form:option>
 									<form:option value="checkbox" >Checkbox</form:option>
 									<form:option value="radio" >Radio</form:option>
+									<form:option value="select" >Select</form:option>
+									<form:option value="multi-select" >Multiselect</form:option>
 									<form:option value="date" >Date</form:option>
 								</form:select>
 							</td>

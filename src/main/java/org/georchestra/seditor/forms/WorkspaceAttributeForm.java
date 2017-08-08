@@ -19,7 +19,7 @@ public class WorkspaceAttributeForm {
 	private String name;
 	
 	@NotEmpty
-	@Pattern(regexp="text|textarea|radio|checkbox|radio|date")
+	@Pattern(regexp="text|textarea|radio|checkbox|select|multi-select|radio|date")
 	private String type;
 	
 	private String values;

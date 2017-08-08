@@ -150,6 +150,22 @@ define('seditor',
 							html += "</label></div>";
 						});
 						break;
+					
+					case 'select':
+						html += "<select id='"+item.name+"' name='"+item.name+"' class='form-control'>";
+						item.datasource.forEach(function(subitem, subindex) {
+							html += "<option value='"+subitem.value+"'>"+subitem.label+"</option>";
+						});
+						html += "</select>";
+						break;
+					
+					case 'multi-select':
+						html += "<select id='"+item.name+"' name='"+item.name+"' class='form-control' multiple='multiple'>";
+						item.datasource.forEach(function(subitem, subindex) {
+							html += "<option value='"+subitem.value+"'>"+subitem.label+"</option>";
+						});
+						html += "</select>";
+						break;
 				
 					case 'radio':
 						item.datasource.forEach(function(subitem, subindex) {
@@ -194,6 +210,11 @@ define('seditor',
 			   					if(value.length > 0)
 			   						attributes[item.name] = value.substring(0,value.length-1);
 			   					else attributes[item.name] = "";
+			   				} else if( item.type == "select" || item.type == "multi-select" ) {
+			   					var value = $('select[name="'+item.name+'"]').val();
+			   					if( Array.isArray(value) )
+			   						value = value.join();
+			   					attributes[item.name] = value;
 			   				} else {
 			   					attributes[item.name] = $('#'+item.name+'-input').val();
 			   				}
@@ -229,7 +250,15 @@ define('seditor',
 			    				if( $.inArray(this.value,values) > -1 ) $(this).prop('checked', true); 
 			    			});
 		    			}
-		    		}else {
+		    		} else if ( item.type == "select" || item.type == "multi-select" ) {
+		    			var values = feature.get(item.name);
+		    			if( values ) {
+		    				values= values.split(",");
+			    			$('select[name="'+item.name+'"] option').each(function(){
+			    				if( $.inArray(this.value,values) > -1 ) $(this).prop('selected', true); 
+			    			});
+		    			}
+		    		} else {
 		    			$('#'+item.name+'-input').val(feature.get(item.name));
 		    		}
     			});
