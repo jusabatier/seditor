@@ -1,9 +1,10 @@
 define('lib/seditor/controls/DeleteFeatureControl',
 	[
 		'openlayers',
-		'bootbox'
+		'bootbox',
+		'seditorGlobalize'
 	],
-	function(ol,bootbox) {
+	function(ol,bootbox,i18n) {
 		seditor.DeleteFeatureControl = function(opt_options) {
 			var options = opt_options || {};
 			
@@ -28,6 +29,7 @@ define('lib/seditor/controls/DeleteFeatureControl',
 			
 			var button = document.createElement('button');
 			button.className = 'ol-control seditor-button seditor-delete-feature disabled';
+			button.title = i18n.formatMessage("deleteFeature");
 	
 			var this_ = this;
 			

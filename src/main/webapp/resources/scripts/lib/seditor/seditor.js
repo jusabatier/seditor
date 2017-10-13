@@ -2,6 +2,7 @@ define('seditor',
 	[
 		'openlayers',
 		'bootbox',
+		'seditorGlobalize',
 		'bootstrapdatetimepicker',
 		'lib/seditor/controls/LayersListControl',
 		'lib/seditor/controls/CustomToolbarControl',
@@ -12,9 +13,10 @@ define('seditor',
 		'lib/seditor/controls/DeleteFeatureControl',
 		'lib/seditor/controls/NavigationControl',
 		'lib/seditor/controls/SnappingControl',
-		'lib/seditor/controls/SaveFeaturesControl'
+		'lib/seditor/controls/SaveFeaturesControl',
+		'lib/seditor/controls/BackgroundSwitcherControl'
 	],
-	function(ol, bootbox) {
+	function(ol, bootbox, i18n) {
 		seditor.initialize = function(map, options) {
 			seditor.showLoadingDialog();
 			
@@ -42,6 +44,9 @@ define('seditor',
 			seditor.map.addControl(new seditor.LayersListControl({
 				layers: seditor.layers
 			}));
+			
+			// and background switcher
+			seditor.map.addControl(new seditor.BackgroundSwitcherControl());
 			
 			// Generate toolbar
 			if( seditor.accessLevel > 1 ) {
@@ -115,7 +120,7 @@ define('seditor',
 		
 		seditor.showLoadingDialog = function() {
 			seditor.loadingDialog = bootbox.dialog({
-				message: '<p style="text-align:center;">Chargement...<br/><img src="images/ajax-loader.gif" /></p>',
+				message: '<p style="text-align:center;">'+i18n.formatMessage("loading")+'...<br/><img src="images/ajax-loader.gif" /></p>',
 				title: 'sEditor',
 				onEscape: false,
 				backdrop: false,
@@ -125,7 +130,7 @@ define('seditor',
 		
 		seditor.showFeatureForm = function(event) {
 			var html = "";
-			html += "<p>Note : les changements ne seront répercutés dans la BDD q'une fois après avoir cliqué sur l'icone de sauvegarde.</p>";
+			html += "<p>"+i18n.formatMessage("savingNote")+"</p>";
 			
 			html += "<div class='form-horizontal'><fieldset>";
 			seditor.attributes.forEach(function(item,index) {
@@ -198,7 +203,7 @@ define('seditor',
 			
 			/********** Ouverture POPUP **************/
 			var dialog = bootbox.confirm({
-		    	title: "Attributs de la geometrie",
+		    	title: i18n.formatMessage("geometryAttributesTitle"),
 		    	message: object,
 		    	callback: function(result) {
 					if(result) {
@@ -220,7 +225,7 @@ define('seditor',
 			   				}
 			   				
 							if( !attributes[item.name] && item.required == "true" ) { 
-								alert('Veuillez renseigner le champ "'+item.name+'".');
+								alert(i18n.messageFormatter("fieldRequired")({field:item.name}));
 								error=true;
 							}
 						});
@@ -277,7 +282,7 @@ define('seditor',
 					bootbox.hideAll();
 				} else if( reponse.statut == "restricted" ) {
 					bootbox.hideAll();
-					bootbox.alert("Vous n'avez pas les permissions necessaires pour consulter cet espace de travail.", function() {
+					bootbox.alert(i18n.formatMessage("workspaceInsufficientPrivileges"), function() {
 						if( seditor.userName == "" ) window.location += "&login";
 					});
 				}

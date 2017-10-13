@@ -112,6 +112,18 @@ body {
     background-repeat: no-repeat;
 }
 
+.seditor-switch-background {
+	background-image: url("../images/switchBackgrounds.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.switch-background-wrapper {
+	position: absolute;
+	top: 6.2em;
+	left: .5em;
+}
+
 .seditor-layers-list-wrapper .seditor-layers-div {
 	position: absolute;
 	top: 2px;

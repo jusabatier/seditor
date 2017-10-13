@@ -1,13 +1,9 @@
 package org.georchestra.seditor.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import org.georchestra.seditor.bean.Workspace;
 import org.georchestra.seditor.bean.WorkspaceAttribute;
 import org.georchestra.seditor.bean.WorkspaceLayer;
@@ -24,17 +20,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * Controller for frontend map.
+ * @author jusabatier
+ * @version 1.0
+ *
+ */
 @Controller
 public class MapController {
 	
 	@Autowired
 	private IServiceWorkspaces service;
 	
+	/**
+	 * Redirect to /resources/index.html
+	 * @return The redirect string
+	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String handleMapRequest(final ModelMap pModel, @RequestHeader(value="sec-roles", defaultValue="") String roles) {
+	public String handleMapRequest() {
 		return "redirect:/resources/index.html";
 	}
 	
+	/**
+	 * Handle configuration request
+	 * @param pModel The request ModelMap
+	 * @param pWorkspaceKey The workspace key for which configuration is requested
+	 * @param roles The user roles in request headers (sec-roles)
+	 * @param username The user name in request header (sec-username)
+	 * @return The JSP template to load
+	 */
 	@RequestMapping(value = "/api/configuration", method = RequestMethod.GET)
 	public String handleConfigurationRequest(final ModelMap pModel, @RequestParam(value="workspace") final String pWorkspaceKey, @RequestHeader(value="sec-roles", defaultValue="") String roles, @RequestHeader(value="sec-username", defaultValue="") String username) {
 		PermissionsHandler.setRoles(roles);
@@ -77,7 +91,14 @@ public class MapController {
 		
 		return "configuration";
 	}
-	
+	 
+	/**
+	 * Handle features list request
+	 * @param pModel The request ModelMap
+	 * @param wsKey The workspace key for which fetures list is requested
+	 * @param roles The user roles in request headers (sec-roles)
+	 * @return The JSP template to load
+	 */
 	@RequestMapping(value = "/api/list", method = RequestMethod.GET)
 	public String workspaceLayerRequest(final ModelMap pModel, @RequestParam(value="workspace") final String wsKey, @RequestHeader(value="sec-roles", defaultValue="") String roles) {
 		PermissionsHandler.setRoles(roles);
@@ -93,6 +114,15 @@ public class MapController {
 		return "feature/list";
 	}
 	
+	/**
+	 * Handle a features list persist request (create, edit, delete)
+	 * @param pModel The request ModelMap
+	 * @param wsKey The workspace key where persist features
+	 * @param data The list of features to persist (GeoJSON)
+	 * @param roles The user roles in request headers (sec-roles)
+	 * @param username The user name in request header (sec-username)
+	 * @return The JSP template to load
+	 */
 	@RequestMapping(value = "/api/persist", method = RequestMethod.POST)
 	public String persistFeatures(final ModelMap pModel, @RequestParam(value="workspace") final String wsKey, @RequestParam(value="data") final String data,
 			@RequestHeader(value="sec-roles", defaultValue="") String roles, @RequestHeader(value="sec-username", defaultValue="") String username) {

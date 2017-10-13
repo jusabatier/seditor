@@ -1,9 +1,10 @@
 define('lib/seditor/controls/SaveFeaturesControl',
 	[
 		'openlayers',
-		'bootbox'
+		'bootbox',
+		'seditorGlobalize'
 	],
-	function(ol,bootbox) {
+	function(ol,bootbox,i18n) {
 		seditor.SaveFeaturesControl = function(opt_options) {
 			var options = opt_options || {};
 			
@@ -28,6 +29,7 @@ define('lib/seditor/controls/SaveFeaturesControl',
 			
 			var button = document.createElement('button');
 			button.className = 'ol-control seditor-button seditor-save-features disabled';
+			button.title = i18n.formatMessage("saveFeatures");
 	
 			var this_ = this;
 			

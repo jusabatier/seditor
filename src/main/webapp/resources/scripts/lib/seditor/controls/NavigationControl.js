@@ -1,9 +1,10 @@
 define('lib/seditor/controls/NavigationControl',
 	[
 		'openlayers',
+		'seditorGlobalize',
 		'lib/seditor/controls/ActiveControl'
 	],
-	function(ol) {
+	function(ol,i18n) {
 		seditor.NavigationControl = function(opt_options) {
 			var options = opt_options || {};
 			
@@ -102,8 +103,8 @@ define('lib/seditor/controls/NavigationControl',
 								var html = "";
 								html += '<table class="table table-striped">';
 								html += '<thead><tr>';
-								html += '<th>Propriété</th>';
-								html += '<th>Valeur</th>';
+								html += '<th>'+i18n.formatMessage("property")+'</th>';
+								html += '<th>'+i18n.formatMessage("value")+'</th>';
 								html += '</tr></thead>';
 								html += '<tbody>';
 								for(var propertyName in properties) {
@@ -143,8 +144,8 @@ define('lib/seditor/controls/NavigationControl',
 									var html = "";
 									html += '<table class="table table-striped">';
 									html += '<thead><tr>';
-									html += '<th>Propriété</th>';
-									html += '<th>Valeur</th>';
+									html += '<th>'+i18n.formatMessage("property")+'</th>';
+									html += '<th>'+i18n.formatMessage("value")+'</th>';
 									html += '</tr></thead>';
 									html += '<tbody>';
 									for(var propertyName in properties) {
@@ -196,12 +197,15 @@ define('lib/seditor/controls/NavigationControl',
 					});
 				}
 			});
+			
+			var title = i18n.formatMessage("navigation");
 	
 			seditor.ActiveControl.call(this, {
 				target: options.target,
 				interactions: this.interactions,
 				toolbar: options.toolbar,
-				className: 'seditor-navigation'
+				className: 'seditor-navigation',
+				title: title
 			});
 		}
 		ol.inherits(seditor.NavigationControl, seditor.ActiveControl);

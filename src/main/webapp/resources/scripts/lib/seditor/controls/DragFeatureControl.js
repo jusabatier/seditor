@@ -1,9 +1,10 @@
 define('lib/seditor/controls/DragFeatureControl',
 	[
 		'openlayers',
+		'seditorGlobalize',
 		'lib/seditor/controls/ActiveControl'
 	],
-	function(ol) {
+	function(ol,i18n) {
 		seditor.DragFeatureControl = function(opt_options) {
 			var options = opt_options || {};
 			
@@ -22,7 +23,7 @@ define('lib/seditor/controls/DragFeatureControl',
 				if( event.selected.length > 0 ) {
 					if( options.checkFeatureEditAllowed !== undefined && !options.checkFeatureEditAllowed(event.selected[0]) ) {
 						this.getFeatures().remove(event.selected[0]);
-						bootbox.alert("Vous n'avez pas les droits pour modifier cette geometrie.");
+						bootbox.alert(i18n.formatMessage("featureInsufficientPrivileges"));
 					}
 				}
 			});
@@ -41,12 +42,15 @@ define('lib/seditor/controls/DragFeatureControl',
 				});
 			});
 			this.interactions.push(translate);
-	
+			
+			var title = i18n.formatMessage('dragFeature');
+			
 			seditor.ActiveControl.call(this, {
 				target: options.target,
 				interactions: this.interactions,
 				toolbar: options.toolbar,
-				className: 'seditor-drag-feature'
+				className: 'seditor-drag-feature',
+				title: title
 			});
 		}
 		ol.inherits(seditor.DragFeatureControl, seditor.ActiveControl);

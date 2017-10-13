@@ -28,7 +28,8 @@ define('lib/seditor/controls/ActiveControl',
 			
 			var button = document.createElement('button');
 			button.className = 'ol-control seditor-button '+options.className;
-	
+			button.title = options.title;
+			
 			var this_ = this;
 			var handleClick = function() {
 				if( this_.active ) return;

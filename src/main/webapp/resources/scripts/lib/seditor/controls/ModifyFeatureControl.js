@@ -2,9 +2,10 @@ define('lib/seditor/controls/ModifyFeatureControl',
 	[
 		'openlayers',
 		'bootbox',
+		'seditorGlobalize',
 		'lib/seditor/controls/ActiveControl'
 	],
-	function(ol,bootbox) {
+	function(ol,bootbox,i18n) {
 		seditor.ModifyFeatureControl = function(opt_options) {
 			var options = opt_options || {};
 			
@@ -49,12 +50,15 @@ define('lib/seditor/controls/ModifyFeatureControl',
 			});
 			options.map.addInteraction(modify);
 			this.interactions.push(modify);
+			
+			var title = i18n.formatMessage("modifyFeature");
 	
 			seditor.ActiveControl.call(this, {
 				target: options.target,
 				interactions: this.interactions,
 				toolbar: options.toolbar,
-				className: 'seditor-modify-feature'
+				className: 'seditor-modify-feature',
+				title: title
 			});
 		}
 		ol.inherits(seditor.ModifyFeatureControl, seditor.ActiveControl);

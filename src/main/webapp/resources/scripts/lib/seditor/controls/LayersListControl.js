@@ -1,9 +1,10 @@
 define('lib/seditor/controls/LayersListControl',
 	[
 		'openlayers',
-		'bootbox'
+		'bootbox',
+		'seditorGlobalize'
 	],
-	function(ol,bootbox) {
+	function(ol,bootbox,i18n) {
 		seditor.LayersListControl = function(opt_options) {
 			var options = opt_options || {};
 			
@@ -13,6 +14,7 @@ define('lib/seditor/controls/LayersListControl',
 			
 			var button = document.createElement('button');
 			button.className = 'seditor-button';
+			button.title = i18n.formatMessage("layerList");
 			
 			this.layerlist = document.createElement('div');
 			this.layerlist.className = 'seditor-layers-div';
