@@ -43,22 +43,6 @@
 						<span class="help-block"><spring:message code="workspaces.fields.tableName.help"/></span>  
 					</div>
 				</div>
-				<form:errors path="wfsUrl" cssClass="alert alert-danger" element="div" cssStyle="text-align: center;"/>
-				<div class="form-group">
-					<form:label path="wfsUrl" class="col-md-4 control-label"><spring:message code="workspaces.fields.wfsUrl"/></form:label>  
-					<div class="col-md-6">
-						<input path="wfsUrl" class="form-control input-md"/>
-						<span class="help-block"><spring:message code="workspaces.fields.wfsUrl.help"/></span>  
-					</div>
-				</div>
-				<form:errors path="wfsTypeName" cssClass="alert alert-danger" element="div" cssStyle="text-align: center;"/>
-				<div class="form-group">
-					<form:label path="wfsTypeName" class="col-md-4 control-label"><spring:message code="workspaces.fields.wfsTypeName"/></form:label>  
-					<div class="col-md-6">
-						<form:input path="wfsTypeName" class="form-control input-md"/>
-						<span class="help-block"><spring:message code="workspaces.fields.wfsTypeName.help"/></span>  
-					</div>
-				</div>
 			</fieldset>
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="sendform"></label>
