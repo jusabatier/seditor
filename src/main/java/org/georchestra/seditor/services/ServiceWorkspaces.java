@@ -8,7 +8,6 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.georchestra.seditor.bean.Workspace;
 import org.georchestra.seditor.bean.WorkspaceAttribute;
@@ -41,26 +40,26 @@ public class ServiceWorkspaces implements IServiceWorkspaces {
 	}
 	
 	@Transactional
-	public Workspace createWorkspace(String pKey, String pWfsUrl, String pWfsTypeName, String pTableName, String pFeatureType) {
-		Workspace lWorkspace = new Workspace(null,pKey,pWfsUrl,pWfsTypeName,pTableName,pFeatureType);
+	public Workspace createWorkspace(String pKey, String pTableName, String pFeatureType) {
+		Workspace lWorkspace = new Workspace(null,pKey,pTableName,pFeatureType);
 		return dao.createWorkspace(lWorkspace);
 	}
 	
 	@Transactional
 	public void deleteWorkspace(Integer pIdWorkspace) {
-		Workspace lWorkspace = new Workspace(pIdWorkspace,null,null,null,null,null);
+		Workspace lWorkspace = new Workspace(pIdWorkspace,null,null,null);
 		dao.deleteWorkspace(lWorkspace);
 	}
 	
 	@Transactional
-	public Workspace updateWorkspace(Integer id, String key, String wfsUrl, String wfsTypeName, String tableName, String featureType) {
-		Workspace update = new Workspace(id,key,wfsUrl,wfsTypeName,tableName,featureType);
+	public Workspace updateWorkspace(Integer id, String key, String tableName, String featureType) {
+		Workspace update = new Workspace(id,key,tableName,featureType);
 		return dao.updateWorkspace(update);
 	}
 	
 	@Transactional(readOnly=true)
 	public Workspace getFullWorkspaceById(Integer id) {
-		Workspace lWorkspace = new Workspace(id,null,null,null,null,null);
+		Workspace lWorkspace = new Workspace(id,null,null,null);
 		lWorkspace = dao.getWorkspaceById(lWorkspace);
 		
 		Hibernate.initialize(lWorkspace.getAttributes());
@@ -158,14 +157,14 @@ public class ServiceWorkspaces implements IServiceWorkspaces {
 	
 	@Transactional
 	public Workspace getWorkspaceByKey(String pWorkspaceKey) {
-		Workspace lWorkspace = new Workspace(null,pWorkspaceKey,null,null,null,null);
+		Workspace lWorkspace = new Workspace(null,pWorkspaceKey,null,null);
 		lWorkspace = dao.getWorkspaceByKey(lWorkspace);
 		return lWorkspace;
 	}
 	
 	@Transactional
 	public Workspace getFullWorkspaceByKey(String pWorkspaceKey) {
-		Workspace lWorkspace = new Workspace(null,pWorkspaceKey,null,null,null,null);
+		Workspace lWorkspace = new Workspace(null,pWorkspaceKey,null,null);
 		lWorkspace = dao.getWorkspaceByKey(lWorkspace);
 		
 		Hibernate.initialize(lWorkspace.getAttributes());

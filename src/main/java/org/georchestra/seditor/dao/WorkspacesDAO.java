@@ -12,7 +12,6 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.sql.DataSource;
 
@@ -120,8 +119,6 @@ public class WorkspacesDAO implements IWorkspacesDAO {
 		
 		Workspace lWorkspace = entityManager.getReference(Workspace.class, update.getId());
 		lWorkspace.setKey(update.getKey());
-		lWorkspace.setWfsUrl(update.getWfsUrl());
-		lWorkspace.setWfsTypeName(update.getWfsTypeName());
 		lWorkspace.setTableName(update.getTableName());
 		lWorkspace.setFeatureType(update.getFeatureType());
 		

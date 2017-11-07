@@ -10,10 +10,8 @@ CREATE TABLE seditor.workspaces
 (
   id serial NOT NULL,
   key character varying(255),
-  wfsurl text,
   tablename text,
   featuretype character varying(255),
-  wfstypename character varying(255),
   CONSTRAINT pk_workspaces PRIMARY KEY (id),
   CONSTRAINT unique_workspaces_key UNIQUE (key)
 )

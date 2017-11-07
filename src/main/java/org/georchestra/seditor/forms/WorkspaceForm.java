@@ -36,8 +36,6 @@ public class WorkspaceForm {
 		this.featureType = ws.getFeatureType();
 		this.key = ws.getKey();
 		this.tableName = ws.getTableName();
-		this.wfsUrl = ws.getWfsUrl();
-		this.wfsTypeName = ws.getWfsTypeName();
 	}
 
 	public Integer getId() {

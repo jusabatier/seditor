@@ -28,12 +28,6 @@ public class Workspace {
 	@Column(name="key", unique=true, nullable=false, length=255)
 	private String key;
 	
-	@Column(name="wfsurl")
-	private String wfsUrl;
-	
-	@Column(name="wfstypename", length=255)
-	private String wfsTypeName;
-	
 	@Column(name="tablename")
 	private String tableName;
 	  
@@ -51,11 +45,9 @@ public class Workspace {
 	
 	public Workspace() {};
 	
-	public Workspace(Integer id, String key, String wfsUrl, String wfsTypeName, String tableName, String featureType) {
+	public Workspace(Integer id, String key, String tableName, String featureType) {
 		this.id = id;
 		this.key = key;
-		this.wfsUrl = wfsUrl;
-		this.wfsTypeName = wfsTypeName;
 		this.tableName = tableName;
 		this.featureType = featureType;
 	}
@@ -74,22 +66,6 @@ public class Workspace {
 	
 	public void setKey(String key) {
 		this.key = key;
-	}
-	
-	public String getWfsUrl() {
-		return wfsUrl;
-	}
-	
-	public void setWfsUrl(String wfsUrl) {
-		this.wfsUrl = wfsUrl;
-	}
-	
-	public String getWfsTypeName() {
-		return wfsTypeName;
-	}
-
-	public void setWfsTypeName(String wfsTypeName) {
-		this.wfsTypeName = wfsTypeName;
 	}
 
 	public String getTableName() {

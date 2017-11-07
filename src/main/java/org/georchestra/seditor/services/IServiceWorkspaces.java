@@ -13,9 +13,9 @@ public interface IServiceWorkspaces {
 	List<Workspace> getWorkspacesList();
 	Workspace  getWorkspaceById(Integer id);
 	Workspace getFullWorkspaceById(Integer id);
-	Workspace createWorkspace(String pKey, String pWfsUrl, String pWfsTypeName, String pTableName, String pFeatureType);
+	Workspace createWorkspace(String pKey, String pWfsUrl, String pFeatureType);
 	void deleteWorkspace(Integer pIdWorkspace);
-	Workspace updateWorkspace(Integer id, String key, String wfsUrl, String wfsTypeName, String tableName, String featureType);
+	Workspace updateWorkspace(Integer id, String key, String tableName, String featureType);
 	WorkspaceAttribute  getAttributeById(Integer id);
 	WorkspaceAttribute addAttributeToWorkspace(Integer wsId, String name, String type, String values, String label, Boolean required);
 	void deleteWorkspaceAttribute(Integer pIdWorkspaceAttribute);

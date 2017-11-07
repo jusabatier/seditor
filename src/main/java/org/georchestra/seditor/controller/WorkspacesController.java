@@ -216,7 +216,7 @@ public class WorkspacesController {
 		}
 		
 		if( !pBindingResult.hasErrors() ) {
-			Workspace created = service.createWorkspace(pWorkspaceForm.getKey(), pWorkspaceForm.getWfsUrl(), pWorkspaceForm.getWfsTypeName(), pWorkspaceForm.getTableName(), pWorkspaceForm.getFeatureType());
+			Workspace created = service.createWorkspace(pWorkspaceForm.getKey(), pWorkspaceForm.getTableName(), pWorkspaceForm.getFeatureType());
 			
 			pModel.addAttribute("id", created.getId());
 			
@@ -296,7 +296,7 @@ public class WorkspacesController {
 		}
 		
 		if( !pBindingResult.hasErrors() ) {
-			Workspace updated = service.updateWorkspace(pWorkspaceForm.getId(), pWorkspaceForm.getKey(), pWorkspaceForm.getWfsUrl(), pWorkspaceForm.getWfsTypeName(), pWorkspaceForm.getTableName(), pWorkspaceForm.getFeatureType());
+			Workspace updated = service.updateWorkspace(pWorkspaceForm.getId(), pWorkspaceForm.getKey(), pWorkspaceForm.getTableName(), pWorkspaceForm.getFeatureType());
 			
 			pModel.addAttribute("id", updated.getId());
 			
