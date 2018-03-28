@@ -446,7 +446,7 @@ public class WorkspacesDAO implements IWorkspacesDAO {
 		
 		for( WorkspaceAttribute wsa : workspace.getAttributes() ) {
 			queryBuilder.append("?, ");
-			parameters.add(StringEscapeUtils.escapeHtml4(properties.getString(wsa.getName())));
+			parameters.add(StringEscapeUtils.escapeHtml4(StringEscapeUtils.unescapeHtml4(properties.getString(wsa.getName()))));
 		}
 		
 		queryBuilder.append("ST_SetSRID(ST_GeomFromGeoJSON('");
@@ -486,7 +486,7 @@ public class WorkspacesDAO implements IWorkspacesDAO {
 		for( WorkspaceAttribute wsa : ws.getAttributes() ) {
 			queryBuilder.append(wsa.getName());
 			queryBuilder.append(" = ?, ");
-			parameters.add(StringEscapeUtils.escapeHtml4(properties.getString(wsa.getName())));
+			parameters.add(StringEscapeUtils.escapeHtml4(StringEscapeUtils.unescapeHtml4(properties.getString(wsa.getName()))));
 		}
 		queryBuilder.append("author = '");
 		queryBuilder.append(author);
