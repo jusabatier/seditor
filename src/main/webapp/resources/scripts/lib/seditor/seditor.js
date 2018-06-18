@@ -233,7 +233,7 @@ define('seditor',
 						else {
 							feature.setProperties(attributes);
 							if( event.type == 'drawend' ) feature.set('state','created');
-							if( event.type == 'select' ) feature.set('state','modified');
+							if( event.type == 'select' && feature.get('state') != 'created' ) feature.set('state','modified');
 						}
 					} else if( event.type == 'drawend' ) {
 						seditor.features.remove(feature);
