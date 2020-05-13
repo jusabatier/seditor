@@ -12,7 +12,7 @@ config.backgrounds = [
 	},
 	{
 		url: 'https://opendata.agglo-lepuyenvelay.fr/geowebcache/service/wmts',
-		layer: 'rasters:ortho_2017',
+		layer: 'rasters:rtge',
 		title: 'RTGE',
 		attribution: 'CRAIG, CAPeV, SDEHL, SGEV, SAEV, Enedis, FEDER'
 	},
